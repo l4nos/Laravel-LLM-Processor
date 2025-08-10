@@ -1,0 +1,53 @@
+{
+    "name": "lanos/llm-processor",
+    "description": "A Laravel package that enables LLM processing for any Eloquent model without requiring modifications to those models.",
+    "keywords": [
+        "laravel",
+        "llm",
+        "openrouter",
+        "ai",
+        "eloquent"
+    ],
+    "homepage": "https://github.com/l4nos/llm-processor",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "L4nos",
+            "email": "rob@updev.agency",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^9.0|^10.0|^11.0",
+        "illuminate/database": "^9.0|^10.0|^11.0",
+        "illuminate/http": "^9.0|^10.0|^11.0",
+        "illuminate/queue": "^9.0|^10.0|^11.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0|^10.0",
+        "orchestra/testbench": "^7.0|^8.0|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lanos\\LLMProcessor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lanos\\LLMProcessor\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lanos\\LLMProcessor\\LLMProcessorServiceProvider"
+            ],
+            "aliases": {
+                "LLMProcessor": "Lanos\\LLMProcessor\\Facades\\LLMProcessor"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
