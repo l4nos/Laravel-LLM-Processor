@@ -60,7 +60,7 @@ class LLMInferenceService
      * @throws ModelNotFoundException
      * @throws LLMProcessException
      */
-    public function processInference(string $processId, string $modelId, array $context = [], bool $async = true): LLMInteraction
+    public function processInference(string $processId, string $modelId, array $context = [], bool $async = true, string | false $overrideUserPrompt = false): LLMInteraction
     {
         // Load the LLMProcess
         $process = LLMProcess::findOrFail($processId);
@@ -90,7 +90,7 @@ class LLMInferenceService
         
         // Process templates
         $systemPrompt = $this->templateProcessor->process($process->system_prompt, $data);
-        $userPrompt = $this->templateProcessor->process($process->user_prompt, $data);
+        $userPrompt = $overrideUserPrompt ?: $this->templateProcessor->process($process->user_prompt, $data);
         
         // Create interaction record
         $interaction = LLMInteraction::create([

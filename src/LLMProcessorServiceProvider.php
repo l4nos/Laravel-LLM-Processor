@@ -46,16 +46,16 @@ class LLMProcessorServiceProvider extends ServiceProvider
         // Register facade
         $this->app->bind('llm-processor', function ($app) {
             return new class {
-                public function process(string $processId, string $modelId, bool $async = true)
+                public function process(string $processId, string $modelId, string | false $overrideUserPrompt = false)
                 {
                     $service = app(LLMInferenceService::class);
-                    return $service->processInference($processId, $modelId, [], $async);
+                    return $service->processInference($processId, $modelId, [], true, $overrideUserPrompt);
                 }
 
-                public function processSync(string $processId, string $modelId)
+                public function processSync(string $processId, string $modelId, string | false $overrideUserPrompt = false)
                 {
                     $service = app(LLMInferenceService::class);
-                    return $service->processInference($processId, $modelId, [], false);
+                    return $service->processInference($processId, $modelId, [], false, $overrideUserPrompt);
                 }
 
                 public function getProcess(string $slug): ?LLMProcess
